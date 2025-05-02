@@ -225,7 +225,8 @@
                 container.appendChild(inner);
                 clueGridEl.appendChild(container);
             }
-            
+            console.log(`Event listener added for box ${i}`);
+
             // Add event listeners for sequence control buttons
             clearSelectionBtn.addEventListener('click', clearSelection);
             checkSequenceBtn.addEventListener('click', manualCheckSequence);
@@ -235,7 +236,7 @@
         /**
          * Updates the control buttons state based on current selection
          */
-        function updateControlsState() {
+       function updateControlsState() {
     // Enable/disable clear selection button
     clearSelectionBtn.disabled = currentSelection.length === 0;
 
@@ -286,7 +287,7 @@
         /**
          * Toggles the selection state of a clue for sequence building
          */
-       function toggleClueSelection(container, boxId) {
+      function toggleClueSelection(container, boxId) {
     // If already selected, deselect
     if (container.classList.contains('selected')) {
         container.classList.remove('selected');

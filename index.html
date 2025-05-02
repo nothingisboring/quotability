@@ -87,6 +87,13 @@
             background-color: #a7f3d0;
             cursor: not-allowed;
         }
+
+.clue-box-inner {
+    transition: transform 0.6s;
+}
+.is-flipped {
+    transform: rotateY(180deg);
+}
     </style>
 </head>
 <body class="flex flex-col items-center min-h-screen p-4 bg-gray-100">
@@ -211,20 +218,7 @@
                 back.classList.add('clue-box-back');
                 if (clueData) {
                     front.textContent = clueData.text;
-                    const input = document.createElement('input');
-                    input.type = 'text'; 
-                    input.placeholder = 'Your answer...';
-                    input.addEventListener('keydown', (e) => { 
-                        if (e.key === 'Enter') { 
-                            handleClueSubmit(i); 
-                        } 
-                        input.classList.remove('input-error'); 
-                    });
-                    const button = document.createElement('button');
-                    button.textContent = 'Submit'; 
-                    button.addEventListener('click', () => handleClueSubmit(i));
-                    back.appendChild(input); 
-                    back.appendChild(button);
+                back.textContent = clueData.text; // Display only the clue text    
                     container.addEventListener('click', handleBoxClick);
                 } else {
                     front.textContent = ''; 
@@ -305,12 +299,7 @@
             if (clueData.solved) {
                 // --- Word Revealed State: Handle sequence selection ---
                 toggleClueSelection(container, boxId);
-            } else {
-                // --- Unsolved State: Flip to Input ---
-                container.classList.add('is-flipped');
-                const input = container.querySelector('.clue-box-back input');
-                if(input) input.focus();
-                clearMessage(); // Clear any previous messages
+            }
             }
         }
 
@@ -373,34 +362,7 @@
             checkSequenceSelection();
         }
 
-        /**
-         * Handles the submission of an individual clue guess.
-         */
-        function handleClueSubmit(boxId) {
-            const container = clueGridEl.querySelector(`.clue-box-container[data-box-id='${boxId}']`);
-            const input = container.querySelector('.clue-box-back input');
-            const front = container.querySelector('.clue-box-front');
-            const clueData = gameData.getClueDataByBoxId(boxId);
-            const guess = input.value.trim();
-            
-            if (!clueData || !guess) return;
-            
-            if (guess.toLowerCase() === clueData.solution.toLowerCase()) {
-                clueData.solved = true;
-                front.textContent = clueData.solution;
-                container.classList.add('word-revealed');
-                container.classList.remove('is-flipped');
-                input.value = '';
-                input.classList.remove('input-error');
-                displayMessage('Correct! Now you can use this word in a quote sequence.', 'text-green-600');
-            } else {
-                input.classList.add('input-error');
-                displayMessage('Incorrect clue answer.', 'text-orange-600');
-                container.querySelector('.clue-box-inner').classList.add('shake');
-                setTimeout(() => { container.querySelector('.clue-box-inner').classList.remove('shake'); }, 500);
-            }
-        }
-
+        
         /**
          * Checks if the current sequence selection matches any quote.
          */
@@ -476,18 +438,24 @@
             quote.quoteSolved = true; 
             solvedQuotesCount++;
             
-            displayMessage(`Correct! Quote ${quote.id} solved.`, 'text-green-600');
+            displayMessage(`Correct sequence! The quote is: "${quote.solution}"`, 'text-green-600');
             
             quote.correctSequence.forEach(boxId => {
-                const container = clueGridEl.querySelector(`.clue-box-container[data-box-id='${boxId}']`);
-                if (container) { 
-                    container.classList.remove('selected', 'word-revealed'); 
-                    container.classList.add('quote-solved');
-                    // Remove any sequence counter
-                    const counter = container.querySelector('.sequence-counter');
-                    if (counter) counter.remove();
-                }
-            });
+    const container = clueGridEl.querySelector(`.clue-box-container[data-box-id='${boxId}']`);
+    if (container) { 
+        container.classList.remove('selected');
+        container.classList.add('quote-solved', 'is-flipped');
+        // Update the front text to reveal the solution
+        const front = container.querySelector('.clue-box-front');
+        const clueData = gameData.getClueDataByBoxId(boxId);
+        if (front && clueData) {
+            front.textContent = clueData.solution;
+        }
+        // Remove any sequence counter
+        const counter = container.querySelector('.sequence-counter');
+        if (counter) counter.remove();
+    }
+});
             
             const quoteDisplay = document.createElement('div');
             quoteDisplay.classList.add('p-3', 'bg-green-100', 'border', 'border-green-300', 'rounded-md', 'text-green-800', 'text-center');

@@ -213,9 +213,10 @@
                 const back = document.createElement('div');
                 back.classList.add('clue-box-back');
                 if (clueData) {
-                    front.textContent = clueData.text;
+                front.textContent = clueData.text;
                 back.textContent = clueData.text; // Display only the clue text    
-                    container.addEventListener('click', handleBoxClick);
+                container.addEventListener('click', handleBoxClick);
+                console.log(`Event listener added for box ${i}`); // Debug here
                 } else {
                     front.textContent = ''; 
                     container.classList.add('empty-box');
@@ -272,6 +273,7 @@
     const boxId = parseInt(container.dataset.boxId);
     const clueData = gameData.getClueDataByBoxId(boxId);
     const quoteData = gameData.getQuoteByBoxId(boxId);
+    console.log('handleBoxClick triggered for box:', boxId); // Debug here
 
     // Ignore clicks on empty or fully solved boxes
     if (!clueData || (quoteData && quoteData.quoteSolved)) {
@@ -288,6 +290,7 @@
          * Toggles the selection state of a clue for sequence building
          */
       function toggleClueSelection(container, boxId) {
+    console.log('toggleClueSelection executed for box:', boxId); //
     // If already selected, deselect
     if (container.classList.contains('selected')) {
         container.classList.remove('selected');

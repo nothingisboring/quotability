@@ -236,15 +236,15 @@
          * Updates the control buttons state based on current selection
          */
         function updateControlsState() {
-            // Enable/disable clear selection button
-            clearSelectionBtn.disabled = currentSelection.length === 0;
-            
-            // Enable/disable check sequence button
-            checkSequenceBtn.disabled = currentSelection.length < 2;
-            
-            // Update the current sequence display
-            updateSequenceDisplay();
-        }
+    // Enable/disable clear selection button
+    clearSelectionBtn.disabled = currentSelection.length === 0;
+
+    // Enable/disable check sequence button
+    checkSequenceBtn.disabled = currentSelection.length < 2;
+
+    // Update the current sequence display
+    updateSequenceDisplay();
+}
 
         /**
          * Updates the display of the current sequence
@@ -267,77 +267,39 @@
          * Handles clicking on a clue box container.
          */
         function handleBoxClick(event) {
-            const container = event.currentTarget;
-            const boxId = parseInt(container.dataset.boxId);
-            const clueData = gameData.getClueDataByBoxId(boxId);
-            const quoteData = gameData.getQuoteByBoxId(boxId);
-            console.log('Box clicked:', container.dataset.boxId);
-    
-            // Add this line for debugging
-            console.log('Clue data:', clueData, 'Quote data:', quoteData);            
+    const container = event.currentTarget;
+    const boxId = parseInt(container.dataset.boxId);
+    const clueData = gameData.getClueDataByBoxId(boxId);
+    const quoteData = gameData.getQuoteByBoxId(boxId);
 
-            // Ignore clicks on empty or fully solved boxes              
-            if (!clueData || (quoteData && quoteData.quoteSolved)) {
-                return;
-            }
+    // Ignore clicks on empty or fully solved boxes
+    if (!clueData || (quoteData && quoteData.quoteSolved)) {
+        return;
+    }
 
-            // If the box is already flipped (showing input)...
-            if (container.classList.contains('is-flipped')) {
-                // Check if the click target is the input or button itself
-                // If so, let their specific event handlers work (or do nothing for the container click)
-                if (event.target.tagName === 'INPUT' || event.target.tagName === 'BUTTON') {
-                    return;
-                }
-                // Otherwise, flip it back to show the clue
-                container.classList.remove('is-flipped');
-                clearMessage(); // Clear any potential error messages from failed submits
-                return; // Stop further processing for this click
-            }
-
-            // --- If the box is NOT flipped ---
-
-            if (clueData.solved) {
-                // --- Word Revealed State: Handle sequence selection ---
-                toggleClueSelection(container, boxId);
-
-            }
-        }
+    // Allow toggling selection for solved clues
+    if (clueData.solved) {
+        toggleClueSelection(container, boxId);
+    }
+}
 
         /**
          * Toggles the selection state of a clue for sequence building
          */
-        function toggleClueSelection(container, boxId) {
-    console.log('Toggling selection for box:', boxId);
-
-    // If already selected, remove from selection
+       function toggleClueSelection(container, boxId) {
+    // If already selected, deselect
     if (container.classList.contains('selected')) {
         container.classList.remove('selected');
-        console.log(`Box ${boxId} deselected`);
-
-        // Remove any sequence counter
-        const counter = container.querySelector('.sequence-counter');
-        if (counter) counter.remove();
-
-        // Remove from selection array
         currentSelection = currentSelection.filter(id => id !== boxId);
+        console.log(`Box ${boxId} deselected. Current selection:`, currentSelection);
     } else {
-        // Otherwise add to selection
+        // Otherwise, select
         container.classList.add('selected');
-        console.log(`Box ${boxId} selected`);
-
-        // Add sequence counter
-        const position = currentSelection.length + 1;
-        const counter = document.createElement('div');
-        counter.classList.add('sequence-counter');
-        counter.textContent = position;
-        container.appendChild(counter);
-
-        // Add to selection array
         currentSelection.push(boxId);
+        console.log(`Box ${boxId} selected. Current selection:`, currentSelection);
     }
 
-    clearMessage();
-    updateControlsState();
+    updateControlsState(); // Update buttons and sequence display
 }
 
         /**

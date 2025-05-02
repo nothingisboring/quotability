@@ -123,25 +123,25 @@
     <script>
         // --- Game Data (identical to the provided version) ---
         const gameData = {
-            sourceTypeEmoji: '🎭', sourceName: 'Hamlet', gridSize: { rows: 3, cols: 4 },
+            sourceTypeEmoji: '🎭', sourceName: 'Macbeth', gridSize: { rows: 3, cols: 4 },
             quotes: [
-                { id: 1, quoteSolved: false, solution: 'To be or not to be, that is the question.', correctSequence: [2, 1, 4, 6, 5], clues: {
-                    2: { text: 'Type of pencil (2,2)', solution: 'To be', solved: false }, 
-                    1: { text: 'Either... (2)', solution: 'or', solved: false }, 
-                    4: { text: 'Different type of pencil (3,2,2)', solution: 'not to be', solved: false }, 
-                    6: { text: 'Not this (4)', solution: 'that', solved: false }, 
-                    5: { text: 'If x...., what is the answer? (4,2,7)', solution: 'is the question', solved: false },
+                { id: 1, quoteSolved: false, solution: 'Double, double toil and trouble.', correctSequence: [2, 1, 4, 6, 5], clues: {
+                    2: { text: 'Twofold', solution: 'Double', solved: false }, 
+                    1: { text: 'Twin', solution: 'double', solved: false }, 
+                    4: { text: 'Labour', solution: 'toil', solved: false }, 
+                    6: { text: 'plus', solution: 'and', solved: false }, 
+                    5: { text: 'difficulty', solution: 'trouble', solved: false },
                 }},
-                { id: 2, quoteSolved: false, solution: 'Alas, poor Yorick.', correctSequence: [7, 8, 3], clues: {
-                    7: { text: 'Sigh (4)', solution: 'Alas', solved: false }, 
-                    8: { text: 'Opposite of rich (4)', solution: 'poor', solved: false }, 
-                    3: { text: 'Ickory anag. (6)', solution: 'Yorick', solved: false },
+                { id: 2, quoteSolved: false, solution: 'Out, damn spot!', correctSequence: [7, 8, 3], clues: {
+                    7: { text: 'Dismiss', solution: 'Out', solved: false }, 
+                    8: { text: 'effing', solution: 'damn', solved: false }, 
+                    3: { text: 'blemish', solution: 'spot!', solved: false },
                 }},
-                { id: 3, quoteSolved: false, solution: 'A fellow of infinite jest.', correctSequence: [10, 9, 12, 11], clues: {
-                    10: { text: 'tenured professor, Brit. (1, 6)', solution: 'a fellow', solved: false }, 
-                    9: { text: 'prep. (2)', solution: 'of', solved: false }, 
-                    12: { text: 'lots and lots (8)', solution: 'infinite', solved: false }, 
-                    11: { text: 'joke (4)', solution: 'jest', solved: false },
+                { id: 3, quoteSolved: false, solution: 'Something wicked this way comes', correctSequence: [10, 9, 12, 11], clues: {
+                    10: { text: 'Thingamajig', solution: 'Something', solved: false }, 
+                    9: { text: 'diabolical', wicked: 'of', solved: false }, 
+                    12: { text: 'like so', solution: 'this way', solved: false }, 
+                    11: { text: 'orgasms', solution: 'comes', solved: false },
                 }}
             ],
             getClueDataByBoxId: function(id) {

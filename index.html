@@ -311,30 +311,38 @@
          * Toggles the selection state of a clue for sequence building
          */
         function toggleClueSelection(container, boxId) {
-            // If already selected, remove from selection
-            if (container.classList.contains('selected')) {
-                container.classList.remove('selected');
-                // Remove any sequence counter
-                const counter = container.querySelector('.sequence-counter');
-                if (counter) counter.remove();
-                // Remove from selection array
-                currentSelection = currentSelection.filter(id => id !== boxId);
-            } else {
-                // Otherwise add to selection
-                container.classList.add('selected');
-                // Add sequence counter
-                const position = currentSelection.length + 1;
-                const counter = document.createElement('div');
-                counter.classList.add('sequence-counter');
-                counter.textContent = position;
-                container.appendChild(counter);
-                // Add to selection array
-                currentSelection.push(boxId);
-            }
-            
-            clearMessage();
-            updateControlsState();
-        }
+    console.log('Toggling selection for box:', boxId);
+
+    // If already selected, remove from selection
+    if (container.classList.contains('selected')) {
+        container.classList.remove('selected');
+        console.log(`Box ${boxId} deselected`);
+
+        // Remove any sequence counter
+        const counter = container.querySelector('.sequence-counter');
+        if (counter) counter.remove();
+
+        // Remove from selection array
+        currentSelection = currentSelection.filter(id => id !== boxId);
+    } else {
+        // Otherwise add to selection
+        container.classList.add('selected');
+        console.log(`Box ${boxId} selected`);
+
+        // Add sequence counter
+        const position = currentSelection.length + 1;
+        const counter = document.createElement('div');
+        counter.classList.add('sequence-counter');
+        counter.textContent = position;
+        container.appendChild(counter);
+
+        // Add to selection array
+        currentSelection.push(boxId);
+    }
+
+    clearMessage();
+    updateControlsState();
+}
 
         /**
          * Clears all current selections

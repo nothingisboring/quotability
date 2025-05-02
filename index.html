@@ -275,8 +275,12 @@
             const boxId = parseInt(container.dataset.boxId);
             const clueData = gameData.getClueDataByBoxId(boxId);
             const quoteData = gameData.getQuoteByBoxId(boxId);
+            console.log('Box clicked:', container.dataset.boxId);
+    
+            // Add this line for debugging
+            console.log('Clue data:', clueData, 'Quote data:', quoteData);            
 
-            // Ignore clicks on empty or fully solved boxes
+            // Ignore clicks on empty or fully solved boxes              
             if (!clueData || (quoteData && quoteData.quoteSolved)) {
                 return;
             }
@@ -299,6 +303,7 @@
             if (clueData.solved) {
                 // --- Word Revealed State: Handle sequence selection ---
                 toggleClueSelection(container, boxId);
+
             }
         }
 

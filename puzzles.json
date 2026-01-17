@@ -423,9 +423,97 @@
       }
     ]
   },
+{
+  "id": "Latin phrases",
+  "order": 7,
+  "sourceTypeEmoji": "🏛",
+  "sourceName": "Latin Phrases",
+  "gridSize": {
+    "rows": 3,
+    "cols": 4
+  },
+  "quotes": [
+    {
+      "id": 1,
+      "solution": "Seize the day",
+      "correctSequence": [1, 2, 3],
+      "clues": {
+        "1": {
+          "text": "Grasp",
+          "solution": "Seize"
+        },
+        "2": {
+          "text": "Determiner",
+          "solution": "the"
+        },
+        "3": {
+          "text": "24 hours",
+          "solution": "day"
+        }
+      }
+    },
+    {
+      "id": 2,
+      "solution": "Glory fades",
+      "correctSequence": [4, 5],
+      "clues": {
+        "4": {
+          "text": "Eminence",
+          "solution": "Glory"
+        },
+        "5": {
+          "text": "Blanches",
+          "solution": "fades"
+        }
+      }
+    },
+    {
+      "id": 3,
+      "solution": "Nothing comes from nothing",
+      "correctSequence": [6, 7, 8, 9],
+      "clues": {
+        "6": {
+          "text": "Nowt",
+          "solution": "Nothing"
+        },
+        "7": {
+          "text": "Emanates",
+          "solution": "comes"
+        },
+        "8": {
+          "text": "Starting point",
+          "solution": "from"
+        },
+        "9": {
+          "text": "Void",
+          "solution": "nothing"
+        }
+      }
+    },
+    {
+      "id": 4,
+      "solution": "Through suffering to the stars",
+      "correctSequence": [10, 11, 12],
+      "clues": {
+        "10": {
+          "text": "Via hardship (7,9)",
+          "solution": "Through suffering"
+        },
+        "11": {
+          "text": "Too, say (2)",
+          "solution": "to"
+        },
+        "12": {
+          "text": "e.g. Walk of Fame (3,5)",
+          "solution": "the stars"
+        }
+      }
+    }
+  ]
+},
   {
     "id": "Queen",
-    "order": 6,
+    "order": 7,
     "sourceTypeEmoji": "👸",
     "sourceName": "Queen Songs",
     "gridSize": {

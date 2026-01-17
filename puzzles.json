@@ -12,13 +12,7 @@
       {
         "id": 1,
         "solution": "Double double toil and trouble",
-        "correctSequence": [
-          2,
-          1,
-          4,
-          6,
-          5
-        ],
+        "correctSequence": [2, 1, 4, 6, 5],
         "clues": {
           "1": {
             "text": "Twofold",
@@ -45,11 +39,7 @@
       {
         "id": 2,
         "solution": "Out, damn spot!",
-        "correctSequence": [
-          7,
-          8,
-          3
-        ],
+        "correctSequence": [7, 8, 3],
         "clues": {
           "3": {
             "text": "blemish",
@@ -68,15 +58,7 @@
       {
         "id": 3,
         "solution": "Full of sound and fury",
-        "correctSequence": [
-          10,
-          9,
-          12,
-          11,
-          13,
-          15,
-          14
-        ],
+        "correctSequence": [10, 9, 12, 11, 13, 15, 14],
         "clues": {
           "9": {
             "text": "with",
@@ -97,14 +79,14 @@
           "13": {
             "text": "vehemence",
             "solution": "fury"
-            },
+          },
           "14": {
             "text": "zero",
-            "solution": "nothing" 
-              },
+            "solution": "nothing"
+          },
           "15": {
             "text": "intimating",
-            "solution": "signifying" 
+            "solution": "signifying"
           }
         }
       }
@@ -112,7 +94,7 @@
   },
   {
     "id": "sonnet-18",
-    "order": 1,
+    "order": 2,
     "sourceTypeEmoji": "📜",
     "sourceName": "Sonnet 18",
     "gridSize": {
@@ -123,15 +105,7 @@
       {
         "id": 1,
         "solution": "Shall I compare thee to a summer's day?",
-        "correctSequence": [
-          2,
-          3,
-          1,
-          6,
-          5,
-          4,
-          7
-        ],
+        "correctSequence": [2, 3, 1, 6, 5, 4, 7],
         "clues": {
           "1": {
             "text": "e.g. bigger",
@@ -166,13 +140,7 @@
       {
         "id": 2,
         "solution": "But thy eternal summer shall not fade",
-        "correctSequence": [
-          8,
-          10,
-          9,
-          12,
-          11
-        ],
+        "correctSequence": [8, 10, 9, 12, 11],
         "clues": {
           "8": {
             "text": "Contrast (3)",
@@ -197,7 +165,7 @@
         }
       }
     ],
-      "dateMatch": "28-04-2025"
+    "dateMatch": "28-04-2025"
   },
   {
     "id": "hamlet",
@@ -212,13 +180,7 @@
       {
         "id": 1,
         "solution": "Double, double toil and trouble.",
-        "correctSequence": [
-          1,
-          3,
-          2,
-          4,
-          6
-        ],
+        "correctSequence": [1, 3, 2, 4, 6],
         "clues": {
           "1": {
             "text": "Halve (6)",
@@ -245,14 +207,7 @@
       {
         "id": 2,
         "solution": "Fair is foul, and foul is fair.",
-        "correctSequence": [
-          5,
-          8,
-          9,
-          11,
-          10,
-          7
-        ],
+        "correctSequence": [5, 8, 9, 11, 10, 7],
         "clues": {
           "5": {
             "text": "Ugly (4)",
@@ -295,13 +250,7 @@
       {
         "id": 1,
         "solution": "Things fall apart, the centre cannot hold",
-        "correctSequence": [
-          11,
-          12,
-          14,
-          13,
-          10
-        ],
+        "correctSequence": [11, 12, 14, 13, 10],
         "clues": {
           "10": {
             "text": "can support it (6,4)",
@@ -328,17 +277,7 @@
       {
         "id": 2,
         "solution": "The best lack all conviction, while the worst are full of passionate intensity.",
-        "correctSequence": [
-          2,
-          4,
-          1,
-          7,
-          8,
-          9,
-          3,
-          6,
-          5
-        ],
+        "correctSequence": [2, 4, 1, 7, 8, 9, 3, 6, 5],
         "clues": {
           "1": {
             "text": "zero (3)",
@@ -378,8 +317,8 @@
           }
         }
       }
-    ],
-   },
+    ]
+  },
   {
     "id": "the-big-lebowski",
     "order": 5,
@@ -393,13 +332,7 @@
       {
         "id": 1,
         "solution": "Obviously you're not a golfer.",
-        "correctSequence": [
-          9,
-          8,
-          1,
-          5,
-          7
-        ],
+        "correctSequence": [9, 8, 1, 5, 7],
         "clues": {
           "1": {
             "text": "Negative (3)",
@@ -426,11 +359,7 @@
       {
         "id": 2,
         "solution": "I am the walrus.",
-        "correctSequence": [
-          3,
-          4,
-          10
-        ],
+        "correctSequence": [3, 4, 10],
         "clues": {
           "3": {
             "text": "Ego (1,2)",
@@ -449,13 +378,7 @@
       {
         "id": 3,
         "solution": "This aggression will not stand.",
-        "correctSequence": [
-          2,
-          12,
-          13,
-          11,
-          6
-        ],
+        "correctSequence": [2, 12, 13, 11, 6],
         "clues": {
           "2": {
             "text": "Not that (4)",
@@ -482,11 +405,7 @@
       {
         "id": 4,
         "solution": "The Dude abides.",
-        "correctSequence": [
-          14,
-          15,
-          16
-        ],
+        "correctSequence": [14, 15, 16],
         "clues": {
           "14": {
             "text": "____ End (3)",
@@ -502,8 +421,8 @@
           }
         }
       }
-    ],
-   },
+    ]
+  },
   {
     "id": "Queen",
     "order": 6,
@@ -517,16 +436,10 @@
       {
         "id": 1,
         "solution": "Bohemian Rhapsody",
-        "correctSequence": [
-          2,
-          4,
-          6,
-          8,
-          10
-        ],
+        "correctSequence": [2, 4, 6, 8, 10],
         "clues": {
           "2": {
-            "text": "Zeus's powerful weapon (10) ",
+            "text": "Zeus's powerful weapon (10)",
             "solution": "THUNDERBOLT"
           },
           "4": {
@@ -538,7 +451,7 @@
             "solution": "TRIGGER"
           },
           "8": {
-            "text": "Lively Spanish dance (8) ",
+            "text": "Lively Spanish dance (8)",
             "solution": "FANDANGO"
           },
           "10": {
@@ -550,16 +463,10 @@
       {
         "id": 2,
         "solution": "Radio Gaga",
-        "correctSequence": [
-          1,
-          3,
-          5,
-          7,
-          9
-        ],
+        "correctSequence": [1, 3, 5, 7, 9],
         "clues": {
           "1": {
-            "text": "Wireless communication device (5) ",
+            "text": "Wireless communication device (5)",
             "solution": "RADIO"
           },
           "3": {
@@ -575,11 +482,11 @@
             "solution": "Background noise"
           },
           "9": {
-            "text": "Baby talk(4) ",
+            "text": "Baby talk (4)",
             "solution": "GAGA"
           }
         }
       }
-    ],
-   }
+    ]
+  }
 ]

@@ -12,7 +12,7 @@
         /* Custom styles */
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f3f4f6; /* Tailwind gray-100 */
+            background-color: #f3f4f6;
         }
         @keyframes shake {
             0%, 100% { transform: translateX(0); }
@@ -21,94 +21,129 @@
         }
         .shake { animation: shake 0.5s ease-in-out; }
 
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            to {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+        }
+
+        .modal-overlay {
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .modal-overlay.closing {
+            animation: fadeOut 0.3s ease-out;
+        }
+
+        .modal-content {
+            animation: slideUp 0.4s ease-out;
+        }
+
+        .modal-content.closing {
+            animation: slideDown 0.3s ease-out;
+        }
+
         /* --- Clue Box Styling --- */
         .clue-box-container {
             perspective: 1000px;
-            min-height: 100px; /* Ensure container has height */
-            position: relative; /* Needed for absolute positioning of counter */
+            min-height: 100px;
+            position: relative;
         }
         .clue-box-inner {
             position: relative;
             width: 100%;
             height: 100%;
-            min-height: 100px; /* Match container */
+            min-height: 100px;
             text-align: center;
             transition: transform 0.7s ease-in-out;
             transform-style: preserve-3d;
             cursor: pointer;
         }
-        /* Flip effect - applied only when quote is solved */
         .clue-box-container.is-flipped .clue-box-inner {
             transform: rotateY(180deg);
         }
-        /* Front and Back faces */
         .clue-box-front, .clue-box-back {
             position: absolute;
             width: 100%;
             height: 100%;
-            -webkit-backface-visibility: hidden; /* Safari */
+            -webkit-backface-visibility: hidden;
             backface-visibility: hidden;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 0.75rem; /* p-3 */
-            border: 2px solid #d1d5db; /* gray-300 */
-            border-radius: 0.375rem; /* rounded-md */
-            background-color: #ffffff; /* white */
+            padding: 0.75rem;
+            border: 2px solid #d1d5db;
+            border-radius: 0.375rem;
+            background-color: #ffffff;
             box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
         }
         .clue-box-front {
-             /* Initially shows the clue text */
-             z-index: 2; /* Ensure front is initially visible */
+             z-index: 2;
         }
         .clue-box-back {
-            /* Shows the solution word after solving */
-            background-color: #d1fae5; /* green-100 - Use solved style for back */
-            border-color: #10b981; /* green-500 */
-            color: #065f46; /* green-800 */
+            background-color: #d1fae5;
+            border-color: #10b981;
+            color: #065f46;
             font-style: italic;
             text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
             transform: rotateY(180deg);
         }
 
-        /* State-specific styling for the FRONT face */
         .selected .clue-box-front {
-            /* When selected for sequencing (before solving) */
-            border-color: #2563eb; /* blue-600 */
-            box-shadow: 0 0 8px 2px rgba(37, 99, 235, 0.5); /* Blue glow */
-            background-color: #dbeafe; /* blue-100 */
-            color: #1e3a8a; /* blue-800 */
+            border-color: #2563eb;
+            box-shadow: 0 0 8px 2px rgba(37, 99, 235, 0.5);
+            background-color: #dbeafe;
+            color: #1e3a8a;
             font-weight: bold;
         }
-        /* Styling applied to the CONTAINER when quote is solved */
         .quote-solved .clue-box-front {
-             /* Front face styling AFTER it's flipped (part of solved quote) */
-             /* We actually style the back face now for the solved look */
-             /* This might not be strictly necessary if backface is always styled */
-             border-color: #10b981; /* Match back face border */
+             border-color: #10b981;
         }
 
-        /* Disable interactions for solved quotes */
         .quote-solved .clue-box-inner {
             cursor: default !important;
         }
-        /* Styling for empty grid cells */
         .empty-box .clue-box-front {
             opacity: 0.6;
             cursor: not-allowed;
-            background-color: #e5e7eb; /* gray-200 */
+            background-color: #e5e7eb;
         }
         .empty-box .clue-box-inner {
             cursor: not-allowed;
         }
 
-        /* Sequence Counter Badge */
         .sequence-counter {
             position: absolute;
             top: -10px;
             right: -10px;
-            background-color: #22c55e; /* green-500 */
+            background-color: #22c55e;
             color: white;
             border-radius: 50%;
             width: 26px;
@@ -118,11 +153,10 @@
             align-items: center;
             justify-content: center;
             font-weight: bold;
-            border: 2px solid #ffffff; /* White border for contrast */
-            z-index: 10; /* Ensure it's above the box */
+            border: 2px solid #ffffff;
+            z-index: 10;
         }
 
-        /* Button Styles (Unchanged) */
         .clear-selection-btn { margin-top: 1rem; padding: 0.5rem 1rem; background-color: #ef4444; color: white; border: none; border-radius: 0.375rem; font-weight: 500; cursor: pointer; transition: background-color 0.2s; }
         .clear-selection-btn:hover { background-color: #dc2626; }
         .clear-selection-btn:disabled { background-color: #fca5a5; cursor: not-allowed; }
@@ -130,15 +164,109 @@
         .check-sequence-btn:hover { background-color: #059669; }
         .check-sequence-btn:disabled { background-color: #a7f3d0; cursor: not-allowed; }
 
-        /* Hover effect for non-solved, non-empty boxes */
         .clue-box-container:not(.quote-solved):not(.empty-box) .clue-box-front:hover {
             transform: scale(1.03);
             transition: transform 0.2s ease-in-out;
-            border-color: #3b82f6; /* blue-500 */
+            border-color: #3b82f6;
+        }
+
+        .help-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 44px;
+            height: 44px;
+            background-color: #3b82f6;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.2s;
+            z-index: 1000;
+        }
+
+        .help-button:hover {
+            background-color: #2563eb;
+            transform: scale(1.1);
         }
     </style>
 </head>
 <body class="flex flex-col items-center min-h-screen p-4 bg-gray-100">
+
+    <!-- Help Button -->
+    <div class="help-button" id="help-button" title="How to Play">
+        ?
+    </div>
+
+    <!-- How to Play Modal -->
+    <div id="modal-overlay" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 modal-overlay">
+        <div class="modal-content bg-white rounded-lg shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="p-6">
+                <div class="flex justify-between items-start mb-4">
+                    <h2 class="text-3xl font-bold text-gray-800">How To Play</h2>
+                    <button id="close-modal" class="text-gray-400 hover:text-gray-600 text-3xl leading-none">&times;</button>
+                </div>
+                
+                <div class="space-y-4 text-gray-700">
+                    <p class="text-lg">
+                        Quotable is a jolly little quote-puzzle game that will give your brain cells a gentle flex on Mondays and a more gruelling workout on Fridays.
+                    </p>
+                    
+                    <div>
+                        <p class="font-semibold text-lg mb-2">There are three puzzle types:</p>
+                        <ul class="space-y-3 ml-4">
+                            <li class="flex items-start">
+                                <span class="text-blue-500 mr-2 mt-1">•</span>
+                                <div>
+                                    <span class="font-medium">All synonyms</span> 
+                                    <span class="text-gray-600">e.g. twofold + twin + Labour + plus + difficulty = <em>double, double, toil and trouble</em></span>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-blue-500 mr-2 mt-1">•</span>
+                                <div>
+                                    <span class="font-medium">All antonyms</span> 
+                                    <span class="text-gray-600">e.g. Ugly + isn't + lovely + but + inoffensive + is not + unfair = <em>Fair is foul, and foul is fair.</em></span>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-blue-500 mr-2 mt-1">•</span>
+                                <div>
+                                    <span class="font-medium">Crossword clues</span> 
+                                    <span class="text-gray-600">(normal or cryptic) e.g. Ego (1,2) + determiner (3) + sea creature (6) = <em>I am the walrus</em></span>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-blue-500 mr-2 mt-1">•</span>
+                                <div>
+                                    <span class="font-medium">Or a mixture of all three!</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <p class="text-lg">
+                        Your goal is to work out the quote based on the synonyms, antonyms, or clue solutions, join them together in the right order, and then submit. But be careful - you only have five attempts to get them all!
+                    </p>
+                    
+                    <p class="text-lg bg-blue-50 border-l-4 border-blue-500 p-4 rounded">
+                        <span class="font-semibold">Weekend puzzles</span> are more 'English eccentric' where anything goes!
+                    </p>
+                </div>
+                
+                <div class="mt-6 flex justify-end">
+                    <button id="got-it-button" class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-200 font-medium">
+                        Got it!
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <header class="text-center mb-6">
         <h1 class="text-4xl font-bold mb-2">Quotable</h1>
@@ -148,11 +276,11 @@
     <div id="message-area" class="h-8 mb-4 text-center font-medium text-red-600"></div>
 
     <div id="clue-grid" class="grid grid-cols-4 gap-3 w-full max-w-2xl mb-6">
-        </div>
+    </div>
 
     <div id="sequence-controls" class="w-full max-w-2xl flex flex-col items-center mb-4">
         <div id="current-sequence" class="text-center mb-2 font-medium h-10 flex items-center justify-center px-2">
-             </div>
+        </div>
         <div class="flex space-x-4">
             <button id="clear-selection" class="clear-selection-btn" disabled>Clear Selection</button>
             <button id="check-sequence" class="check-sequence-btn" disabled>Check Sequence</button>
@@ -160,7 +288,7 @@
     </div>
 
     <div id="solved-quotes-area" class="w-full max-w-2xl space-y-3 mb-6">
-        </div>
+    </div>
 
     <div id="bonus-round" class="hidden w-full max-w-md text-center p-4 bg-white rounded-lg shadow">
         <h2 class="text-xl font-semibold mb-3">All Quotes Solved!</h2>
@@ -171,397 +299,413 @@
     </div>
 
     <script>
-      // --- Load puzzles from JSON file ---
-let allPuzzles = [];
-let gameData = null;
+        // Modal functionality
+        const helpButton = document.getElementById('help-button');
+        const modalOverlay = document.getElementById('modal-overlay');
+        const closeModalButton = document.getElementById('close-modal');
+        const gotItButton = document.getElementById('got-it-button');
 
-/**
- * Fetches the puzzles from puzzles.json file
- */
-async function loadPuzzles() {
-    try {
-        const response = await fetch('puzzles.json');
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+        function openModal() {
+            modalOverlay.classList.remove('hidden', 'closing');
+            document.body.style.overflow = 'hidden';
         }
-        allPuzzles = await response.json();
-        console.log('Puzzles loaded:', allPuzzles);
-        return allPuzzles;
-    } catch (error) {
-        console.error('Error loading puzzles:', error);
-        displayMessage('Error loading puzzles. Please refresh the page.', 'text-red-600');
-        return null;
-    }
-}
 
-/**
- * Gets the puzzle for today based on the current date
- */
-function getTodaysPuzzle(puzzles) {
-    const today = new Date();
-    const startDate = new Date('2025-01-18'); // Your starting date
-    
-    // Calculate days since start
-    const diffTime = today - startDate;
-    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-    
-    // Use modulo to cycle through puzzles
-    const puzzleIndex = diffDays % puzzles.length;
-    
-    console.log(`Today's puzzle index: ${puzzleIndex}`);
-    return puzzles[puzzleIndex];
-}
+        function closeModal() {
+            const overlay = modalOverlay;
+            const content = overlay.querySelector('.modal-content');
+            
+            overlay.classList.add('closing');
+            content.classList.add('closing');
+            
+            setTimeout(() => {
+                overlay.classList.add('hidden');
+                overlay.classList.remove('closing');
+                content.classList.remove('closing');
+                document.body.style.overflow = 'auto';
+            }, 300);
+        }
 
-/**
- * Transforms the JSON puzzle data into the gameData format expected by the game
- */
-function transformPuzzleData(puzzle) {
-    return {
-        sourceTypeEmoji: puzzle.sourceTypeEmoji,
-        sourceName: puzzle.sourceName,
-        gridSize: puzzle.gridSize,
-        quotes: puzzle.quotes.map(quote => ({
-            id: quote.id,
-            quoteSolved: false,
-            solution: quote.solution,
-            correctSequence: quote.correctSequence,
-            clues: Object.entries(quote.clues).reduce((acc, [key, clue]) => {
-                acc[key] = {
-                    text: clue.text,
-                    solution: clue.solution,
-                    solved: false
-                };
-                return acc;
-            }, {})
-        })),
-        getClueDataByBoxId: function(id) {
-            for (const quote of this.quotes) {
-                if (quote.clues[id]) return quote.clues[id];
+        helpButton.addEventListener('click', openModal);
+        closeModalButton.addEventListener('click', closeModal);
+        gotItButton.addEventListener('click', closeModal);
+        
+        modalOverlay.addEventListener('click', (e) => {
+            if (e.target === modalOverlay) {
+                closeModal();
             }
-            return null;
-        },
-        getQuoteByBoxId: function(id) {
-            for (const quote of this.quotes) {
-                if (quote.clues[id]) return quote;
-            }
-            return null;
-        },
-        areAllQuotesSolved: function() {
-            return this.quotes.every(quote => quote.quoteSolved);
-        }
-    };
-}
-
-// --- Game State ---
-let currentSelection = [];
-let solvedQuotesCount = 0;
-let totalQuotes = 0;
-
-// --- DOM Elements ---
-const sourceEmojiEl = document.getElementById('source-emoji');
-const clueGridEl = document.getElementById('clue-grid');
-const messageAreaEl = document.getElementById('message-area');
-const solvedQuotesAreaEl = document.getElementById('solved-quotes-area');
-const bonusRoundEl = document.getElementById('bonus-round');
-const bonusGuessInput = document.getElementById('bonus-guess');
-const submitBonusButton = document.getElementById('submit-bonus');
-const bonusResultEl = document.getElementById('bonus-result');
-const clearSelectionBtn = document.getElementById('clear-selection');
-const checkSequenceBtn = document.getElementById('check-sequence');
-const currentSequenceEl = document.getElementById('current-sequence');
-
-// --- Core Game Functions ---
-
-/**
- * Initializes the game board by creating clue boxes.
- */
-function initGame() {
-    console.log("Initializing game...");
-    sourceEmojiEl.textContent = gameData.sourceTypeEmoji;
-    totalQuotes = gameData.quotes.length;
-    const totalBoxes = gameData.gridSize.rows * gameData.gridSize.cols;
-    clueGridEl.innerHTML = '';
-
-    // Update grid layout based on puzzle
-    clueGridEl.style.gridTemplateColumns = `repeat(${gameData.gridSize.cols}, minmax(0, 1fr))`;
-
-    for (let i = 1; i <= totalBoxes; i++) {
-        const clueData = gameData.getClueDataByBoxId(i);
-        const quoteData = gameData.getQuoteByBoxId(i);
-
-        const container = document.createElement('div');
-        container.classList.add('clue-box-container');
-        container.dataset.boxId = i;
-
-        const inner = document.createElement('div');
-        inner.classList.add('clue-box-inner');
-
-        const front = document.createElement('div');
-        front.classList.add('clue-box-front');
-
-        const back = document.createElement('div');
-        back.classList.add('clue-box-back');
-
-        if (clueData) {
-            front.textContent = clueData.text;
-            back.textContent = clueData.solution;
-            container.addEventListener('click', handleBoxClick);
-
-            if (quoteData && quoteData.quoteSolved) {
-                clueData.solved = true;
-                container.classList.add('quote-solved', 'is-flipped');
-            }
-        } else {
-            front.textContent = '';
-            container.classList.add('empty-box');
-        }
-
-        inner.appendChild(front);
-        if (clueData) inner.appendChild(back);
-        container.appendChild(inner);
-        clueGridEl.appendChild(container);
-    }
-
-    clearSelectionBtn.addEventListener('click', clearSelection);
-    checkSequenceBtn.addEventListener('click', manualCheckSequence);
-    submitBonusButton.addEventListener('click', handleBonusSubmit);
-
-    updateControlsState();
-    console.log("Game Initialized.");
-}
-
-function handleBoxClick(event) {
-    const container = event.currentTarget;
-    const boxId = parseInt(container.dataset.boxId);
-    const clueData = gameData.getClueDataByBoxId(boxId);
-    const quoteData = gameData.getQuoteByBoxId(boxId);
-
-    if (!clueData || (quoteData && quoteData.quoteSolved)) {
-        return;
-    }
-
-    toggleClueSelection(container, boxId);
-    clearMessage();
-}
-
-function toggleClueSelection(container, boxId) {
-    const existingIndex = currentSelection.indexOf(boxId);
-
-    if (existingIndex > -1) {
-        currentSelection.splice(existingIndex, 1);
-        container.classList.remove('selected');
-        const counter = container.querySelector('.sequence-counter');
-        if (counter) counter.remove();
-        updateSequenceCounters();
-    } else {
-        currentSelection.push(boxId);
-        container.classList.add('selected');
-        updateSequenceCounters();
-    }
-
-    updateControlsState();
-}
-
-function updateSequenceCounters() {
-    clueGridEl.querySelectorAll('.sequence-counter').forEach(counter => counter.remove());
-    currentSelection.forEach((boxId, index) => {
-        const container = clueGridEl.querySelector(`.clue-box-container[data-box-id='${boxId}']`);
-        if (container) {
-            const counter = document.createElement('span');
-            counter.classList.add('sequence-counter');
-            counter.textContent = index + 1;
-            container.appendChild(counter);
-        }
-    });
-}
-
-function updateControlsState() {
-    clearSelectionBtn.disabled = currentSelection.length === 0;
-    checkSequenceBtn.disabled = currentSelection.length < 2;
-    updateSequenceDisplay();
-}
-
-function updateSequenceDisplay() {
-    if (currentSelection.length === 0) {
-        currentSequenceEl.textContent = "Click clue boxes to select them for a quote.";
-        return;
-    }
-
-    const words = currentSelection.map(boxId => {
-        const clueData = gameData.getClueDataByBoxId(boxId);
-        return clueData ? clueData.text : '?';
-    });
-
-    currentSequenceEl.textContent = `Selected: "${words.join(' ')}"`;
-}
-
-function clearSelection() {
-    currentSelection.forEach(boxId => {
-        const container = clueGridEl.querySelector(`.clue-box-container[data-box-id='${boxId}']`);
-        if (container) {
-            container.classList.remove('selected');
-            const counter = container.querySelector('.sequence-counter');
-            if (counter) counter.remove();
-        }
-    });
-    currentSelection = [];
-    clearMessage();
-    updateControlsState();
-}
-
-function manualCheckSequence() {
-    if (currentSelection.length < 2) {
-        displayMessage('Select at least two words to check a sequence.', 'text-yellow-600');
-        return;
-    }
-    checkSequenceSelection();
-}
-
-function checkSequenceSelection() {
-    if (currentSelection.length === 0) return;
-
-    let matchFound = false;
-    let matchedQuote = null;
-
-    for (const quote of gameData.quotes) {
-        if (quote.quoteSolved) continue;
-        if (arrayEquals(currentSelection, quote.correctSequence)) {
-            matchFound = true;
-            matchedQuote = quote;
-            break;
-        }
-    }
-
-    if (matchFound && matchedQuote) {
-        handleCorrectSequence(matchedQuote);
-    } else {
-        const firstBoxId = currentSelection[0];
-        const potentialQuote = gameData.getQuoteByBoxId(firstBoxId);
-        let allFromSameQuote = potentialQuote && currentSelection.every(boxId => potentialQuote.clues[boxId]);
-
-        if (!allFromSameQuote) {
-            handleIncorrectSequence("Selected words must belong to the same quote.");
-        } else {
-            handleIncorrectSequence();
-        }
-    }
-}
-
-function arrayEquals(a, b) {
-    if (!Array.isArray(a) || !Array.isArray(b)) return false;
-    if (a.length !== b.length) return false;
-    for (let i = 0; i < a.length; i++) {
-        if (a[i] !== b[i]) return false;
-    }
-    return true;
-}
-
-function handleCorrectSequence(quote) {
-    quote.quoteSolved = true;
-    solvedQuotesCount++;
-
-    displayMessage(`Correct! Quote ${solvedQuotesCount}/${totalQuotes} found.`, 'text-green-600');
-
-    quote.correctSequence.forEach(boxId => {
-        const container = clueGridEl.querySelector(`.clue-box-container[data-box-id='${boxId}']`);
-        const clueData = gameData.getClueDataByBoxId(boxId);
-
-        if (container && clueData) {
-            clueData.solved = true;
-            container.classList.remove('selected');
-            container.classList.add('quote-solved', 'is-flipped');
-
-            const counter = container.querySelector('.sequence-counter');
-            if (counter) counter.remove();
-        }
-    });
-
-    const quoteDisplay = document.createElement('div');
-    quoteDisplay.classList.add('p-3', 'bg-green-100', 'border', 'border-green-300', 'rounded-md', 'text-green-800', 'text-center', 'italic');
-    quoteDisplay.textContent = `"${quote.solution}"`;
-    solvedQuotesAreaEl.appendChild(quoteDisplay);
-
-    currentSelection = [];
-    updateControlsState();
-
-    if (gameData.areAllQuotesSolved()) {
-        handleAllQuotesSolved();
-    }
-}
-
-function handleIncorrectSequence(message = "Incorrect sequence or order. Try again.") {
-    displayMessage(message, 'text-red-600');
-
-    const selectedContainers = [];
-    currentSelection.forEach(boxId => {
-        const container = clueGridEl.querySelector(`.clue-box-container[data-box-id='${boxId}']`);
-        if (container) {
-            selectedContainers.push(container);
-            const inner = container.querySelector('.clue-box-inner');
-            if (inner) inner.classList.add('shake');
-        }
-    });
-
-    setTimeout(() => {
-        selectedContainers.forEach(container => {
-            const inner = container.querySelector('.clue-box-inner');
-            if (inner) inner.classList.remove('shake');
         });
-    }, 500);
-}
 
-function handleAllQuotesSolved() {
-    displayMessage('Congratulations! All quotes found!', 'text-blue-600');
-    bonusRoundEl.classList.remove('hidden');
-    bonusRoundEl.classList.add('block');
-    clearSelectionBtn.disabled = true;
-    checkSequenceBtn.disabled = true;
-    currentSequenceEl.textContent = "All quotes solved!";
-}
+        // Load puzzles from JSON file
+        let allPuzzles = [];
+        let gameData = null;
 
-function handleBonusSubmit() {
-    const guess = bonusGuessInput.value.trim().toLowerCase();
-    const correctAnswer = gameData.sourceName.toLowerCase();
-    
-    if (guess === correctAnswer) {
-        bonusResultEl.textContent = 'Correct! Well done!';
-        bonusResultEl.className = 'mt-3 h-6 font-medium text-green-600';
-    } else {
-        bonusResultEl.textContent = `Incorrect. The source was: ${gameData.sourceName}`;
-        bonusResultEl.className = 'mt-3 h-6 font-medium text-red-600';
-    }
-    
-    bonusGuessInput.disabled = true;
-    submitBonusButton.disabled = true;
-    submitBonusButton.classList.add('opacity-50', 'cursor-not-allowed');
-}
+        async function loadPuzzles() {
+            try {
+                const response = await fetch('puzzles.json');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                allPuzzles = await response.json();
+                console.log('Puzzles loaded:', allPuzzles);
+                return allPuzzles;
+            } catch (error) {
+                console.error('Error loading puzzles:', error);
+                displayMessage('Error loading puzzles. Please refresh the page.', 'text-red-600');
+                return null;
+            }
+        }
 
-function displayMessage(text, colorClass) {
-    messageAreaEl.textContent = text;
-    messageAreaEl.className = 'h-8 mb-4 text-center font-medium';
-    messageAreaEl.classList.add(colorClass);
-}
+        function getTodaysPuzzle(puzzles) {
+            const today = new Date();
+            const startDate = new Date('2025-01-17');
+            
+            const diffTime = today - startDate;
+            const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+            
+            const puzzleIndex = diffDays % puzzles.length;
+            
+            console.log(`Today's puzzle index: ${puzzleIndex}`);
+            return puzzles[puzzleIndex];
+        }
 
-function clearMessage() {
-    messageAreaEl.textContent = '';
-}
+        function transformPuzzleData(puzzle) {
+            return {
+                sourceTypeEmoji: puzzle.sourceTypeEmoji,
+                sourceName: puzzle.sourceName,
+                gridSize: puzzle.gridSize,
+                quotes: puzzle.quotes.map(quote => ({
+                    id: quote.id,
+                    quoteSolved: false,
+                    solution: quote.solution,
+                    correctSequence: quote.correctSequence,
+                    clues: Object.entries(quote.clues).reduce((acc, [key, clue]) => {
+                        acc[key] = {
+                            text: clue.text,
+                            solution: clue.solution,
+                            solved: false
+                        };
+                        return acc;
+                    }, {})
+                })),
+                getClueDataByBoxId: function(id) {
+                    for (const quote of this.quotes) {
+                        if (quote.clues[id]) return quote.clues[id];
+                    }
+                    return null;
+                },
+                getQuoteByBoxId: function(id) {
+                    for (const quote of this.quotes) {
+                        if (quote.clues[id]) return quote;
+                    }
+                    return null;
+                },
+                areAllQuotesSolved: function() {
+                    return this.quotes.every(quote => quote.quoteSolved);
+                }
+            };
+        }
 
-// --- Initialize Game ---
-document.addEventListener('DOMContentLoaded', async () => {
-    displayMessage('Loading puzzle...', 'text-blue-600');
-    
-    const puzzles = await loadPuzzles();
-    if (!puzzles || puzzles.length === 0) {
-        displayMessage('Failed to load puzzles.', 'text-red-600');
-        return;
-    }
-    
-    const todaysPuzzle = getTodaysPuzzle(puzzles);
-    gameData = transformPuzzleData(todaysPuzzle);
-    
-    clearMessage();
-    initGame();
-});
+        let currentSelection = [];
+        let solvedQuotesCount = 0;
+        let totalQuotes = 0;
+
+        const sourceEmojiEl = document.getElementById('source-emoji');
+        const clueGridEl = document.getElementById('clue-grid');
+        const messageAreaEl = document.getElementById('message-area');
+        const solvedQuotesAreaEl = document.getElementById('solved-quotes-area');
+        const bonusRoundEl = document.getElementById('bonus-round');
+        const bonusGuessInput = document.getElementById('bonus-guess');
+        const submitBonusButton = document.getElementById('submit-bonus');
+        const bonusResultEl = document.getElementById('bonus-result');
+        const clearSelectionBtn = document.getElementById('clear-selection');
+        const checkSequenceBtn = document.getElementById('check-sequence');
+        const currentSequenceEl = document.getElementById('current-sequence');
+
+        function initGame() {
+            console.log("Initializing game...");
+            sourceEmojiEl.textContent = gameData.sourceTypeEmoji;
+            totalQuotes = gameData.quotes.length;
+            const totalBoxes = gameData.gridSize.rows * gameData.gridSize.cols;
+            clueGridEl.innerHTML = '';
+
+            clueGridEl.style.gridTemplateColumns = `repeat(${gameData.gridSize.cols}, minmax(0, 1fr))`;
+
+            for (let i = 1; i <= totalBoxes; i++) {
+                const clueData = gameData.getClueDataByBoxId(i);
+                const quoteData = gameData.getQuoteByBoxId(i);
+
+                const container = document.createElement('div');
+                container.classList.add('clue-box-container');
+                container.dataset.boxId = i;
+
+                const inner = document.createElement('div');
+                inner.classList.add('clue-box-inner');
+
+                const front = document.createElement('div');
+                front.classList.add('clue-box-front');
+
+                const back = document.createElement('div');
+                back.classList.add('clue-box-back');
+
+                if (clueData) {
+                    front.textContent = clueData.text;
+                    back.textContent = clueData.solution;
+                    container.addEventListener('click', handleBoxClick);
+
+                    if (quoteData && quoteData.quoteSolved) {
+                        clueData.solved = true;
+                        container.classList.add('quote-solved', 'is-flipped');
+                    }
+                } else {
+                    front.textContent = '';
+                    container.classList.add('empty-box');
+                }
+
+                inner.appendChild(front);
+                if (clueData) inner.appendChild(back);
+                container.appendChild(inner);
+                clueGridEl.appendChild(container);
+            }
+
+            clearSelectionBtn.addEventListener('click', clearSelection);
+            checkSequenceBtn.addEventListener('click', manualCheckSequence);
+            submitBonusButton.addEventListener('click', handleBonusSubmit);
+
+            updateControlsState();
+            console.log("Game Initialized.");
+        }
+
+        function handleBoxClick(event) {
+            const container = event.currentTarget;
+            const boxId = parseInt(container.dataset.boxId);
+            const clueData = gameData.getClueDataByBoxId(boxId);
+            const quoteData = gameData.getQuoteByBoxId(boxId);
+
+            if (!clueData || (quoteData && quoteData.quoteSolved)) {
+                return;
+            }
+
+            toggleClueSelection(container, boxId);
+            clearMessage();
+        }
+
+        function toggleClueSelection(container, boxId) {
+            const existingIndex = currentSelection.indexOf(boxId);
+
+            if (existingIndex > -1) {
+                currentSelection.splice(existingIndex, 1);
+                container.classList.remove('selected');
+                const counter = container.querySelector('.sequence-counter');
+                if (counter) counter.remove();
+                updateSequenceCounters();
+            } else {
+                currentSelection.push(boxId);
+                container.classList.add('selected');
+                updateSequenceCounters();
+            }
+
+            updateControlsState();
+        }
+
+        function updateSequenceCounters() {
+            clueGridEl.querySelectorAll('.sequence-counter').forEach(counter => counter.remove());
+            currentSelection.forEach((boxId, index) => {
+                const container = clueGridEl.querySelector(`.clue-box-container[data-box-id='${boxId}']`);
+                if (container) {
+                    const counter = document.createElement('span');
+                    counter.classList.add('sequence-counter');
+                    counter.textContent = index + 1;
+                    container.appendChild(counter);
+                }
+            });
+        }
+
+        function updateControlsState() {
+            clearSelectionBtn.disabled = currentSelection.length === 0;
+            checkSequenceBtn.disabled = currentSelection.length < 2;
+            updateSequenceDisplay();
+        }
+
+        function updateSequenceDisplay() {
+            if (currentSelection.length === 0) {
+                currentSequenceEl.textContent = "Click clue boxes to select them for a quote.";
+                return;
+            }
+
+            const words = currentSelection.map(boxId => {
+                const clueData = gameData.getClueDataByBoxId(boxId);
+                return clueData ? clueData.text : '?';
+            });
+
+            currentSequenceEl.textContent = `Selected: "${words.join(' ')}"`;
+        }
+
+        function clearSelection() {
+            currentSelection.forEach(boxId => {
+                const container = clueGridEl.querySelector(`.clue-box-container[data-box-id='${boxId}']`);
+                if (container) {
+                    container.classList.remove('selected');
+                    const counter = container.querySelector('.sequence-counter');
+                    if (counter) counter.remove();
+                }
+            });
+            currentSelection = [];
+            clearMessage();
+            updateControlsState();
+        }
+
+        function manualCheckSequence() {
+            if (currentSelection.length < 2) {
+                displayMessage('Select at least two words to check a sequence.', 'text-yellow-600');
+                return;
+            }
+            checkSequenceSelection();
+        }
+
+        function checkSequenceSelection() {
+            if (currentSelection.length === 0) return;
+
+            let matchFound = false;
+            let matchedQuote = null;
+
+            for (const quote of gameData.quotes) {
+                if (quote.quoteSolved) continue;
+                if (arrayEquals(currentSelection, quote.correctSequence)) {
+                    matchFound = true;
+                    matchedQuote = quote;
+                    break;
+                }
+            }
+
+            if (matchFound && matchedQuote) {
+                handleCorrectSequence(matchedQuote);
+            } else {
+                const firstBoxId = currentSelection[0];
+                const potentialQuote = gameData.getQuoteByBoxId(firstBoxId);
+                let allFromSameQuote = potentialQuote && currentSelection.every(boxId => potentialQuote.clues[boxId]);
+
+                if (!allFromSameQuote) {
+                    handleIncorrectSequence("Selected words must belong to the same quote.");
+                } else {
+                    handleIncorrectSequence();
+                }
+            }
+        }
+
+        function arrayEquals(a, b) {
+            if (!Array.isArray(a) || !Array.isArray(b)) return false;
+            if (a.length !== b.length) return false;
+            for (let i = 0; i < a.length; i++) {
+                if (a[i] !== b[i]) return false;
+            }
+            return true;
+        }
+
+        function handleCorrectSequence(quote) {
+            quote.quoteSolved = true;
+            solvedQuotesCount++;
+
+            displayMessage(`Correct! Quote ${solvedQuotesCount}/${totalQuotes} found.`, 'text-green-600');
+
+            quote.correctSequence.forEach(boxId => {
+                const container = clueGridEl.querySelector(`.clue-box-container[data-box-id='${boxId}']`);
+                const clueData = gameData.getClueDataByBoxId(boxId);
+
+                if (container && clueData) {
+                    clueData.solved = true;
+                    container.classList.remove('selected');
+                    container.classList.add('quote-solved', 'is-flipped');
+
+                    const counter = container.querySelector('.sequence-counter');
+                    if (counter) counter.remove();
+                }
+            });
+
+            const quoteDisplay = document.createElement('div');
+            quoteDisplay.classList.add('p-3', 'bg-green-100', 'border', 'border-green-300', 'rounded-md', 'text-green-800', 'text-center', 'italic');
+            quoteDisplay.textContent = `"${quote.solution}"`;
+            solvedQuotesAreaEl.appendChild(quoteDisplay);
+
+            currentSelection = [];
+            updateControlsState();
+
+            if (gameData.areAllQuotesSolved()) {
+                handleAllQuotesSolved();
+            }
+        }
+
+        function handleIncorrectSequence(message = "Incorrect sequence or order. Try again.") {
+            displayMessage(message, 'text-red-600');
+
+            const selectedContainers = [];
+            currentSelection.forEach(boxId => {
+                const container = clueGridEl.querySelector(`.clue-box-container[data-box-id='${boxId}']`);
+                if (container) {
+                    selectedContainers.push(container);
+                    const inner = container.querySelector('.clue-box-inner');
+                    if (inner) inner.classList.add('shake');
+                }
+            });
+
+            setTimeout(() => {
+                selectedContainers.forEach(container => {
+                    const inner = container.querySelector('.clue-box-inner');
+                    if (inner) inner.classList.remove('shake');
+                });
+            }, 500);
+        }
+
+        function handleAllQuotesSolved() {
+            displayMessage('Congratulations! All quotes found!', 'text-blue-600');
+            bonusRoundEl.classList.remove('hidden');
+            bonusRoundEl.classList.add('block');
+            clearSelectionBtn.disabled = true;
+            checkSequenceBtn.disabled = true;
+            currentSequenceEl.textContent = "All quotes solved!";
+        }
+
+        function handleBonusSubmit() {
+            const guess = bonusGuessInput.value.trim().toLowerCase();
+            const correctAnswer = gameData.sourceName.toLowerCase();
+            
+            if (guess === correctAnswer) {
+                bonusResultEl.textContent = 'Correct! Well done!';
+                bonusResultEl.className = 'mt-3 h-6 font-medium text-green-600';
+            } else {
+                bonusResultEl.textContent = `Incorrect. The source was: ${gameData.sourceName}`;
+                bonusResultEl.className = 'mt-3 h-6 font-medium text-red-600';
+            }
+            
+            bonusGuessInput.disabled = true;
+            submitBonusButton.disabled = true;
+            submitBonusButton.classList.add('opacity-50', 'cursor-not-allowed');
+        }
+
+        function displayMessage(text, colorClass) {
+            messageAreaEl.textContent = text;
+            messageAreaEl.className = 'h-8 mb-4 text-center font-medium';
+            messageAreaEl.classList.add(colorClass);
+        }
+
+        function clearMessage() {
+            messageAreaEl.textContent = '';
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            displayMessage('Loading puzzle...', 'text-blue-600');
+            
+            const puzzles = await loadPuzzles();
+            if (!puzzles || puzzles.length === 0) {
+                displayMessage('Failed to load puzzles.', 'text-red-600');
+                return;
+            }
+            
+            const todaysPuzzle = getTodaysPuzzle(puzzles);
+            gameData = transformPuzzleData(todaysPuzzle);
+            
+            clearMessage();
+            initGame();
+        });
     </script>
 
 </body>

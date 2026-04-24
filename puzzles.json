@@ -15,7 +15,7 @@
         "correctSequence": [2, 1, 4, 6, 5],
         "clues": {
           "1": {
-            "text": "Twofold",
+            "text": "twofold",
             "solution": "double"
           },
           "2": {

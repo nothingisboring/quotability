@@ -112,27 +112,27 @@
             "solution": "compare"
           },
           "2": {
-            "text": "Future state (5)",
+            "text": "Will",
             "solution": "Shall"
           },
           "3": {
-            "text": "One (1)",
+            "text": "One",
             "solution": "I"
           },
           "4": {
-            "text": "June 21st (7,3)",
+            "text": "June 21st",
             "solution": "summer's day"
           },
           "5": {
-            "text": "2+1 (2,1)",
+            "text": "2+1",
             "solution": "to a"
           },
           "6": {
-            "text": "Old you (4)",
+            "text": "Old you",
             "solution": "thee"
           },
           "7": {
-            "text": "Rising intonation (1)",
+            "text": "Rising intonation",
             "solution": "?"
           }
         }
@@ -143,23 +143,23 @@
         "correctSequence": [8, 10, 9, 12, 11],
         "clues": {
           "8": {
-            "text": "Contrast (3)",
+            "text": "Contraster",
             "solution": "But"
           },
           "9": {
-            "text": "Forever (7)",
+            "text": "Forever",
             "solution": "eternal"
           },
           "10": {
-            "text": "Old your (3)",
+            "text": "Old your",
             "solution": "thy"
           },
           "11": {
-            "text": "Longer shan't, shorter lighten (5,3,4)",
+            "text": "Longer shan't, shorter lighten",
             "solution": "shall not fade"
           },
           "12": {
-            "text": "Season (6)",
+            "text": "Season",
             "solution": "summer"
           }
         }

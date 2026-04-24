@@ -425,7 +425,7 @@ no[
   },
 {
   "id": "Latin phrases",
-  "order": 7,
+  "order": 6,
   "sourceTypeEmoji": "🏛",
   "sourceName": "Latin Phrases",
   "gridSize": {
@@ -513,7 +513,7 @@ no[
 },
   {
     "id": "Queen",
-    "order": 8,
+    "order": 7,
     "sourceTypeEmoji": "👸",
     "sourceName": "Queen Songs",
     "gridSize": {

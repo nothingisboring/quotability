@@ -168,10 +168,10 @@
     "dateMatch": "28-04-2025"
   },
   {
-    "id": "hamlet",
+    "id": "Macbeth2",
     "order": 3,
     "sourceTypeEmoji": "👑",
-    "sourceName": "Hamlet",
+    "sourceName": "Macbeth",
     "gridSize": {
       "rows": 3,
       "cols": 4
@@ -207,7 +207,7 @@
       {
         "id": 2,
         "solution": "Fair is foul, and foul is fair.",
-        "correctSequence": [5, 8, 9, 11, 10, 7],
+        "correctSequence": [5, 8, 9, 11, 10, 13, 7],
         "clues": {
           "5": {
             "text": "Ugly (4)",
@@ -218,7 +218,7 @@
             "solution": "fair"
           },
           "8": {
-            "text": "Isn't' (2)",
+            "text": "Isn't (2)",
             "solution": "is"
           },
           "9": {
@@ -232,6 +232,10 @@
           "11": {
             "text": "But (3)",
             "solution": "and"
+          },
+          "13": {
+            "text": "Is not (2)",
+            "solution": "is"
           }
         }
       }
